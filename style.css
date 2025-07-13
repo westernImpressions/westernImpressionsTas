@@ -174,19 +174,10 @@
     position: relative;
     flex-wrap: wrap;
     flex-direction: row;
+    width:80%;
   }
 
-  @media (max-width: 600px) {
-    .modal-content{
-      flex-direction: column;
-      gap:12px; 
 
-    }
-    .modal-left, .modal-right{
-      align-items: center;
-      width: 100%
-    }
-  }
   
   .modal-left {
     flex: 1 1 200px;
@@ -199,6 +190,9 @@
   
   .modal-text-body {
     flex: 1 1 400px;
+    overflow-y: auto;
+    overflow-wrap: break-word;
+
   }
   
   .modal-close {
@@ -245,4 +239,56 @@
     object-fit: cover;
     border-radius: 6px;
     background: #eee;
+  }
+
+
+  @media (max-width: 600px) {
+    .modal-content{
+      display: flex;
+      flex-direction: row;
+      gap:12px;
+      height: 100%;
+    }
+    .modal-image-container{
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      display: flex;
+    }
+    .modal-left{
+      align-items: center;
+      width:100%;
+      flex: 1;
+    } 
+    .modal-right{
+      align-items: center;
+      max-height: 30vh;
+      flex: 1;
+    }
+    .main-image{
+      max-height: 30vh;
+      width: auto;
+      height: auto;
+      display: block;
+      margin: 0 auto 1rem auto;
+      border-radius: 8px;
+    }    
+    .modal-text-body{
+      overflow-y: auto;
+      overflow-wrap: break-word;
+      height: 80%;
+    }
+    .modal-section-content{
+      height: 100%;
+    }
+
+    .modal-variation-thumbnails {
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: none; /* 자동 줄바꿈 */
+      max-width: 50px;          /* 필요시 */
+      gap: 8px;                 /* 필요시 간격 조정 */
+    }
+    .thumb{
+      max-width: 30px;
+    }
   }

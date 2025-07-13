@@ -62,7 +62,7 @@ function modalAdder (card) {
       : '';
       const variation = JSON.parse(card.dataset.variation);
       variation.map(item => {
-        return `<img src="https://westernimpressionsart.blob.core.windows.net/artworks/${title}-${item}.jpg" alt="${item.label}" style="max-width: 300px; border-radius: 6px;" />`
+        return `<img src="https://westernimpressionsart.blob.core.windows.net/artworks/${title}-${item}.jpg" alt="${item}"  />`
       })
       const modal = document.createElement('div');
       modal.classList.add('modal');
@@ -70,24 +70,25 @@ function modalAdder (card) {
         <div class="modal-content">
         <div class ="modal-image-container">
           <div class="modal-left">
-            <img src="https://westernimpressionsart.blob.core.windows.net/artworks/${title.toLowerCase()}-lino.jpg" alt="${title}" style="max-width: 300px; border-radius: 6px;" />
+            <img class= "main-image" src="https://westernimpressionsart.blob.core.windows.net/artworks/${title.toLowerCase()}-lino.jpg" alt="${title}"  />
           </div>
           <div class="modal-right">
             <div class="modal-variation-thumbnails">
             ${variation.map(item => {
-              return `<img class="thumb" src="https://westernimpressionsart.blob.core.windows.net/artworks/${title}-${item}.jpg" alt="${actualTitle}-${item}" style="max-width: 300px; border-radius: 6px;" />`
+              return `<img class="thumb" src="https://westernimpressionsart.blob.core.windows.net/artworks/${title}-${item}.jpg" alt="${actualTitle}-${item}" />`
             }).join('')}
             </div>
           </div>
           </div>
           <div class="modal-text-body">
             <button class="modal-close">×</button>
-            <div class="section-content">
+            <div class="modal-section-content">
             <h2>${actualTitle}</h2>            
             <p>${formatLongDescription}</p>
-            </div>
             <a href="mailto:wi@westernimpressions.com?subject=Order%20Request:%20${encodeURIComponent(title)}" class="btn secondary">Email to Order</a>
-          </div>
+          
+            </div>
+            </div>
         </div>
       `;
       document.body.appendChild(modal);
