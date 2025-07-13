@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>WESTERN IMPRESSIONS</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="script.js"></script>
 </head>
 <body>
 
@@ -23,7 +24,7 @@
     <h2 class="section-title">About the Studio</h2>
     <div class="section-content">
       <p>
-        Nestled in Zeehan on Tasmania’s wild Weㅈst Coast, Western Impressions is a lino printmaking studio where each piece is a reflection of place: stormy harbours, Huon pine driftwood, Maugean skates, and the delicate balance between nature and industry.
+        Nestled in Zeehan on Tasmania’s wild West Coast, Western Impressions is a lino printmaking studio where each piece is a reflection of place: stormy harbours, Huon pine driftwood, Maugean skates, and the delicate balance between nature and industry.
       </p>
     </div>
     <a href="#contact" class="btn secondary">Learn More About Us</a>
@@ -32,7 +33,7 @@
   <section id="shop" class="section prints">
     <h2 class="section-title">Art Works</h2>
     <div class="grid section-content">
-      <div class="print-card" data-title="Salmon & Maugean" data-price="$120" data-material="Linocut" data-edition="Edition of 20" data-img="salmon-print.jpg">
+      <!-- <div class="print-card" data-title="Salmon & Maugean" data-price="$120" data-material="Linocut" data-edition="Edition of 20" data-img="salmon-print.jpg">
         <img src="salmon-print.jpg" alt="Salmon print" />
         <h3>Salmon & Maugean</h3>
         <p>$120 · Linocut · Edition of 20</p>
@@ -46,7 +47,7 @@
         <img src="fern-fato.jpg" alt="Fato print" />
         <h3>Fato</h3>
         <p>$120 · Linocut · Edition of 25</p>
-      </div>
+      </div> -->
     </div>
     <a href="#shop" class="btn secondary">View All Prints</a>
   </section>
@@ -78,40 +79,7 @@
   </footer>
 
   <script>
-    document.querySelectorAll('.print-card').forEach(card => {
-      card.addEventListener('click', () => {
-        const title = card.dataset.title;
-        const price = card.dataset.price;
-        const material = card.dataset.material;
-        const edition = card.dataset.edition;
-        const img = card.dataset.img;
-
-        const modal = document.createElement('div');
-        modal.classList.add('modal');
-        modal.innerHTML = `
-          <div class="modal-content">
-            <div class="modal-left">
-              <img src="${img}" alt="${title}" style="max-width: 300px; border-radius: 6px;" />
-            </div>
-            <div class="modal-text-body">
-              <button class="modal-close">×</button>
-              <h2>${title}</h2>
-              <p><strong>Price:</strong> ${price}</p>
-              <p><strong>Material:</strong> ${material}</p>
-              <p><strong>${edition}</strong></p>
-              <p>To order this piece, please email us and include the title in your message.</p>
-              <a href="mailto:wi@westernimpressions.com?subject=Order%20Request:%20${encodeURIComponent(title)}" class="btn secondary">Email to Order</a>
-            </div>
-          </div>
-        `;
-        document.body.appendChild(modal);
-
-        modal.querySelector('.modal-close').addEventListener('click', () => modal.remove());
-        modal.addEventListener('click', (e) => {
-          if (e.target === modal) modal.remove();
-        });
-      });
-    });
+    
   </script>
 </body>
 </html>
