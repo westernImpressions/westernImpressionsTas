@@ -277,6 +277,7 @@
       overflow-y: auto;
       overflow-wrap: break-word;
       height: 80%;
+      max-height: 40vh
     }
     .modal-section-content{
       height: 100%;
@@ -289,6 +290,8 @@
       gap: 8px;                 /* 필요시 간격 조정 */
     }
     .thumb{
-      max-width: 30px;
+      width: 100%;
+      min-width:40px;
+      max-width:80px;
     }
   }

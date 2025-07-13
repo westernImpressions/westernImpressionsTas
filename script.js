@@ -61,8 +61,8 @@ function modalAdder (card) {
       ? longDescription.replace(/\.\s*/g, '.<br/>')
       : '';
       const variation = JSON.parse(card.dataset.variation);
-      variation.map(item => {
-        return `<img src="https://westernimpressionsart.blob.core.windows.net/artworks/${title}-${item}.jpg" alt="${item}"  />`
+      variation.map(variationItem => {
+        return `<img src="https://westernimpressionsart.blob.core.windows.net/artworks/${title.toLowerCase()}-${variationItem.toLowerCase()}.jpg" alt="${variationItem}"  />`
       })
       const modal = document.createElement('div');
       modal.classList.add('modal');
@@ -74,8 +74,8 @@ function modalAdder (card) {
           </div>
           <div class="modal-right">
             <div class="modal-variation-thumbnails">
-            ${variation.map(item => {
-              return `<img class="thumb" src="https://westernimpressionsart.blob.core.windows.net/artworks/${title}-${item}.jpg" alt="${actualTitle}-${item}" />`
+            ${variation.map(variationItem => {
+              return `<img class="thumb" src="https://westernimpressionsart.blob.core.windows.net/artworks/${title.toLowerCase()}-${variationItem.toLowerCase()}.jpg" alt="${variationItem}" />`
             }).join('')}
             </div>
           </div>
@@ -91,6 +91,47 @@ function modalAdder (card) {
             </div>
         </div>
       `;
+
+      const thumbnails = modal.querySelectorAll('.thumb');
+      thumbnails.forEach(thumb => {
+        thumb.addEventListener('click', () => {
+            if(thumb.src.includes('lino')){
+              mainImage.src = thumb.src;
+              thumb.src = `https://westernimpressionsart.blob.core.windows.net/artworks/${title.toLowerCase()}-lino.jpg`
+              const modalContentDiv = document.querySelector('.modal-content');
+              modalContentDiv.innerHTML = `
+                    <div class="modal-content">
+                    <div class ="modal-image-container">
+                    <div class="modal-left">
+                        <img class= "main-image" src="https://westernimpressionsart.blob.core.windows.net/artworks/${title.toLowerCase()}-lino.jpg" alt="${title}"  />
+                    </div>
+                    <div class="modal-right">
+                        <div class="modal-variation-thumbnails">
+                        ${variation.map(variationItem => {
+                        return `<img class="thumb" src="https://westernimpressionsart.blob.core.windows.net/artworks/${title.toLowerCase()}-${variationItem.toLowerCase()}.jpg" alt="${variationItem}" />`
+                        }).join('')}
+                        </div>
+                    </div>
+                    </div>
+                    <div class="modal-text-body">
+                        <button class="modal-close">×</button>
+                        <div class="modal-section-content">
+                        <h2>${actualTitle}</h2>            
+                        <p>${formatLongDescription}</p>
+                        <a href="mailto:wi@westernimpressions.com?subject=Order%20Request:%20${encodeURIComponent(title)}" class="btn secondary">Email to Order</a>
+                    
+                        </div>
+                        </div>
+                    </div>
+                `
+            }
+            else{
+              mainImage.src = thumb.src;
+              thumb.src = `https://westernimpressionsart.blob.core.windows.net/artworks/${title.toLowerCase()}-lino.jpg`
+            }
+        });
+      });
+
       document.body.appendChild(modal);
 
       modal.querySelector('.modal-close').addEventListener('click', () => modal.remove());
@@ -99,3 +140,17 @@ function modalAdder (card) {
       });
     });
   };
+
+//   function modalThumbChanger() {
+//     const modalThumbnails = document.querySelectorAll('.thumb');
+//     const mainImage = document.querySelector('.main-image');
+
+//     modalThumbnails.forEach(thumb => {
+//         thumb.addEventListener('click', () => {
+//             if(thumb.src.includes('lino')){
+//                 mainImage.src = thumb.src;
+//                 thumb.src = `https://westernimpressionsart.blob.core.windows.net/artworks/${title.toLowerCase()}-lino.jpg`
+//             }
+//         });
+//     });
+//     }
