@@ -52,8 +52,6 @@ function renderData(data) {
 
 function modalAdder (card) {
     card.addEventListener('click', () => {
-     console.log(card);
-     console.log(card.dataset.title);
       const title = card.dataset.title;
       const actualTitle = card.dataset.actualTitle;
       const longDescription = card.dataset.longDescription;
@@ -93,50 +91,20 @@ function modalAdder (card) {
         </div>
       `;
 
-      const thumbnails = modal.querySelectorAll('.thumb');
-      thumbnails.forEach(thumb => {
-        thumb.addEventListener('click', () => {
-            if(thumb.src.includes('lino')){
-              mainImage.src = thumb.src;
-              thumb.src = `https://westernimpressionsart.blob.core.windows.net/artworks/${title.toLowerCase()}-lino.jpg`
-              const modalContentDiv = document.querySelector('.modal-content');
-              modalContentDiv.innerHTML = `
-                    <div class="modal-content">
-                        <div class ="modal-image-container">
-                            <div class="modal-left">
-                                <img class= "main-image" src="https://westernimpressionsart.blob.core.windows.net/artworks/${title.toLowerCase()}-lino.jpg" alt="${title}"  />
-                            </div>
-                            <div class="modal-right">
-                                <div class="modal-variation-thumbnails">
-                                    ${variation.map(variationItem => {
-                                    return `<img class="thumb" src="https://westernimpressionsart.blob.core.windows.net/artworks/${title.toLowerCase()}-${variationItem.toLowerCase()}.jpg" alt="${variationItem}" />`
-                                    }).join('')}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-text-body">
-                        <button class="modal-close">×</button>
-                        <div class="modal-section-content">
-                            <h2>${actualTitle}</h2>            
-                            <p>${formatLongDescription}</p>
-                            </div>
-                            <div class="modal-section-content-button">
-                                <a href="mailto:wi@westernimpressions.com?subject=Order%20Request:%20${encodeURIComponent(title)}" class="btn secondary" >Email to Order</a>
-                            </div>
-                        
-                    </div>
+      
 
-                `
-            }
-            else{
-              mainImage.src = thumb.src;
-              thumb.src = `https://westernimpressionsart.blob.core.windows.net/artworks/${title.toLowerCase()}-lino.jpg`
-            }
-        });
-      });
+      
 
       document.body.appendChild(modal);
+      document.querySelectorAll('.thumb').forEach(thumb => {
+        thumb.addEventListener('click', () => {
+            console.log(thumb);
+            const mainImage = document.querySelector('.main-image');
+            const tempSrc = mainImage.src;
+            mainImage.src = thumb.src;
+            thumb.src = tempSrc;
+        })
+    })
 
       modal.querySelector('.modal-close').addEventListener('click', () => modal.remove());
       modal.addEventListener('click', (e) => {
@@ -145,17 +113,3 @@ function modalAdder (card) {
     });
   };
 
-  function modalThumbChanger() {
-    const modalThumbnails = document.querySelectorAll('.thumb');
-    const mainImage = document.querySelector('.main-image');
-
-    modalThumbnails.forEach(thumb => {
-        thumb.addEventListener('click', () => {
-            if(thumb.src.includes('lino')){
-                mainImage.src = thumb.src;
-                thumb.src = `https://westernimpressionsart.blob.core.windows.net/artworks/${title.toLowerCase()}-lino.jpg`
-            }
-        });
-    });
-    }
-  
